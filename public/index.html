@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ChessV2</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="tag">ChessV2</p>
+        <h1>Instant online chess.</h1>
+        <p>No accounts. No database. Create a room, send the code, play.</p>
+      </div>
+      <div class="panel">
+        <input id="nameInput" placeholder="Guest name" maxlength="18" />
+        <button id="createBtn">Create Room</button>
+        <div class="row">
+          <input id="roomInput" placeholder="Room code" maxlength="8" />
+          <button id="joinBtn">Join</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <aside>
+        <div class="card">
+          <small>ROOM</small>
+          <h2 id="roomCode">Not joined</h2>
+          <button id="copyBtn">Copy Invite</button>
+        </div>
+        <div class="card">
+          <small>YOU</small>
+          <h3 id="youText">Not connected</h3>
+          <p id="turnText">Create or join a room.</p>
+        </div>
+        <div class="card">
+          <small>PLAYERS</small>
+          <p id="whitePlayer">White: empty</p>
+          <p id="blackPlayer">Black: empty</p>
+          <p id="spectators">Spectators: 0</p>
+        </div>
+        <div class="card">
+          <small>MOVES</small>
+          <pre id="pgn"></pre>
+        </div>
+        <button id="resetBtn" class="danger">Reset Game</button>
+      </aside>
+
+      <section>
+        <div id="board"></div>
+        <p id="status">Waiting for room...</p>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
