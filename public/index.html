@@ -3,61 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ChessV2</title>
+  <title>ChessV2 Rated</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
   <main>
     <section class="hero">
       <div>
-        <p class="tag">ChessV2</p>
-        <h1>Instant online chess.</h1>
-        <p>No accounts. No database. Create a room, send the code, play.</p>
+        <p class="tag">ChessV2 Rated</p>
+        <h1>Official-rule ranked chess.</h1>
+        <p>Accounts, persistent ELO, saved games, 10+0 clocks, legal moves only, and Play Now matchmaking. You cannot pick your opponent.</p>
       </div>
-      <div class="panel">
-        <input id="nameInput" placeholder="Guest name" maxlength="18" />
-        <button id="createBtn">Create Room</button>
-        <div class="row">
-          <input id="roomInput" placeholder="Room code" maxlength="8" />
-          <button id="joinBtn">Join</button>
-        </div>
+      <div class="panel" id="authPanel">
+        <input id="username" placeholder="Username" maxlength="18" />
+        <input id="password" type="password" placeholder="Password" />
+        <div class="row"><button id="loginBtn">Login</button><button id="registerBtn">Register</button></div>
+      </div>
+      <div class="panel hidden" id="accountPanel">
+        <h2 id="accountName">Account</h2>
+        <p id="accountStats">Rating 1200</p>
+        <button id="playBtn">Play Now</button>
+        <button id="cancelBtn" class="ghost">Cancel Queue</button>
+        <button id="logoutBtn" class="danger">Logout</button>
       </div>
     </section>
-
     <section class="layout">
       <aside>
-        <div class="card">
-          <small>ROOM</small>
-          <h2 id="roomCode">Not joined</h2>
-          <button id="copyBtn">Copy Invite</button>
-        </div>
-        <div class="card">
-          <small>YOU</small>
-          <h3 id="youText">Not connected</h3>
-          <p id="turnText">Create or join a room.</p>
-        </div>
-        <div class="card">
-          <small>PLAYERS</small>
-          <p id="whitePlayer">White: empty</p>
-          <p id="blackPlayer">Black: empty</p>
-          <p id="spectators">Spectators: 0</p>
-        </div>
-        <div class="card">
-          <small>MOVES</small>
-          <pre id="pgn"></pre>
-        </div>
-        <button id="resetBtn" class="danger">Reset Game</button>
+        <div class="card"><small>CLOCKS</small><h2 id="whiteClock">10:00</h2><p id="whitePlayer">White: —</p><h2 id="blackClock">10:00</h2><p id="blackPlayer">Black: —</p></div>
+        <div class="card"><small>YOU</small><h3 id="youText">Login to play</h3><p id="turnText">Play Now finds your opponent.</p></div>
+        <div class="card"><small>ACTIONS</small><div class="row"><button id="drawBtn">Offer Draw</button><button id="resignBtn" class="danger">Resign</button></div><button id="declineDrawBtn" class="ghost">Decline Draw</button></div>
+        <div class="card"><small>MOVES</small><pre id="pgn"></pre></div>
       </aside>
-
-      <section>
-        <div id="board"></div>
-        <p id="status">Waiting for room...</p>
-      </section>
+      <section><div id="board"></div><p id="status">Login or register to start.</p><div class="grid"><div class="card"><small>LEADERBOARD</small><div id="leaderboard"></div></div><div class="card"><small>RECENT GAMES</small><div id="history"></div></div></div></section>
     </section>
   </main>
-
   <div id="toast"></div>
-
   <script src="/socket.io/socket.io.js"></script>
   <script type="module" src="/app.js"></script>
 </body>
