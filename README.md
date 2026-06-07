@@ -1,28 +1,35 @@
-# ChessV2
+# ChessV2 Rated
 
-Guest-only online chess.
+A real account-based ranked chess app built for Render.
 
-## Features
+## Current features
 
-- No accounts
-- No database
-- Create room
-- Join room with code
-- Online 1v1
-- Spectators after 2 players
-- Legal move validation with chess.js
-- Render-ready
+- Register/login accounts
+- MongoDB persistence
+- Play Now matchmaking only
+- Users cannot pick who they face
+- Persistent ELO rating system
+- Rated wins/losses/draws
+- Saved game records
+- 10+0 clock
+- Resign
+- Offer/accept/decline draw
+- Legal move validation using `chess.js`
+- Checkmate, stalemate, repetition, insufficient material, 50-move/draw detection through chess rules
+- Leaderboard
+- Recent game history
+- Mobile-friendly board
 
-## Local
+## Required Render env vars
 
-```bash
-npm install
-npm start
+```txt
+MONGO_DB=mongodb+srv://...
+SESSION_SECRET=make-a-long-random-secret
 ```
 
-Open `http://localhost:3000`.
+`MONGO_DB` is required for accounts, sessions, games, and ratings.
 
-## Render
+## Render deploy
 
 Build command:
 
@@ -35,3 +42,16 @@ Start command:
 ```bash
 npm start
 ```
+
+## Local development
+
+```bash
+npm install
+npm start
+```
+
+Open `http://localhost:3000`.
+
+## Notes
+
+This app is intentionally matchmaking-only. There are no invite codes and no picking opponents, so it works like a simple ranked queue.
